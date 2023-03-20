@@ -1,5 +1,7 @@
 package atcoderabc293;
 
+//   https://atcoder.jp/contests/abc293/tasks/abc293_a
+
 import java.util.*;
 
 public class pb1 {
