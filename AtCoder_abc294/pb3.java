@@ -3,7 +3,7 @@ package AtCoder_abc294;
 import java.util.*;
 
 public class pb3 {
-
+//		https://atcoder.jp/contests/abc294/tasks/abc294_c
 	public static void main(String[] args) {
 		Scanner scn = new Scanner(System.in);
 		int qq = scn.nextInt();
