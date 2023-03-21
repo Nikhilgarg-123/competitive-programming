@@ -3,6 +3,7 @@ package AtCoder_abc294;
 import java.util.*;
 
 public class pb3_approch2 {
+//	https://atcoder.jp/contests/abc294/tasks/abc294_c
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
