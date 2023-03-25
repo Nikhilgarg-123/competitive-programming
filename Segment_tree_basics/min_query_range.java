@@ -1,4 +1,4 @@
-package Segment_tree;
+package Segment_tree_basics;
 
 import java.util.*;
 
@@ -42,31 +42,53 @@ public class min_query_range {
 		return (Math.min(left, right));
 
 	}
-	
-	// Point Update 
-	public static void updateNode(int [] tree, int ss , int se , int i , int new_val,int index) {
-		
+
+	// Point Update
+	public static void updateNode(int[] tree, int ss, int se, int i, int new_val, int index) {
+
 		// Case where I is out of bounds
-		if(i>se || i<ss) {
+		if (i > se || i < ss) {
 			return;
 		}
-		
-		// leaf node 
-		
-		if(ss==se) {
-			tree[index]= new_val;
+
+		// leaf node
+
+		if (ss == se) {
+			tree[index] = new_val;
 			return;
 		}
-		
+
 		// otherwise
+
+		int mid = (ss + se) / 2;
+		updateNode(tree, ss, mid, i, new_val, 2 * index);
+		updateNode(tree, mid + 1, se, i, new_val, 2 * index + 1);
+		tree[index] = Math.min(tree[2 * index], tree[2 * index + 1]);
+
+	}
+	
+	// range update 
+	public static void updateRange(int [] tree, int ss, int se , int l , int r, int inc , int index) {
+		// out of bound
+		if(l>se || r<ss) {
+			return; 
+		}
 		
-		int mid=(ss+se)/2;
-		updateNode(tree,ss,mid,i,new_val,2*index);
-		updateNode(tree,mid+1,se,i,new_val,2*index);
-		tree[index]= Math.min(tree[2*index], tree[2*index+1]);
-		
+		// leaf node
+		if(ss==se) {
+			tree[index]+=inc;
+			return;
+		}
+		//recursive case
+		int mid = (ss+se)/2;
+		updateRange(tree,ss,mid,l,r,inc,index*2);
+		updateRange(tree,mid+1,se,l,r,inc,2*index+1);
+		tree[index]= Math.min(tree[2*index],tree[2*index+1]);
+		return;
 		
 	}
+	
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -74,9 +96,9 @@ public class min_query_range {
 		int n = arr.length;
 		int tree[] = new int[4 * n + 1];
 		buildtree(arr, 0, n - 1, tree, 1);
-//		for (int i : tree) {
-//			System.out.println(i + " ");
-//		}
+		for (int i : tree) {
+			System.out.print(i + " ");
+		}
 
 //		Scanner scn = new Scanner(System.in);
 //		int q = scn.nextInt();
@@ -85,12 +107,19 @@ public class min_query_range {
 //			int r = scn.nextInt();
 //			System.out.println(query(tree, 0, n - 1, l, r, 1));
 //		}
-		
-		updateNode(tree,0,n-1,3,5,1);
-		for (int i : tree) {
-			System.out.println(i + " ");
-		}
 
+		System.out.println();
+
+		updateNode(tree, 0, n - 1, 3, 5, 1);
+		for (int i : tree) {
+			System.out.print(i + " ");
+		}
+		
+		updateRange(tree, 0, n-1, 1, 3, 200, 1);
+		System.out.println();
+		for (int i : tree) {
+			System.out.print(i + " ");
+		}
 	}
 
 }
