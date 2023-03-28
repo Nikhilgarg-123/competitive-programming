@@ -132,38 +132,36 @@ public class graphs {
 		return false;
 
 	}
-	
-	
+
 	// BFS (BREADTH FIRST SEARCH ) - similar to level order traversal of tree
-		
-	// DEFINATION  OF BFS
-	
-	// algorithm for searching in graph data Structure . It starts from 'SRC' 
-	// node and neighbour nodes at the present depth prior to moving on to the 
+
+	// DEFINATION OF BFS
+
+	// algorithm for searching in graph data Structure . It starts from 'SRC'
+	// node and neighbour nodes at the present depth prior to moving on to the
 	// nodes at next depth level.
-	
-//	BFS always give us shortest path
-	
-	private class Pair{
+// 		
+//		MOST IMPORTANT POINT	
+//////	BFS always give us shortest path
+//
+	private class Pair {
 		String vname;
 		String psf;
 	}
-	
-	// Linked list can be used as Stack and Queue 
-	//  AddFirst  ---------- O(1)
-	//	addLast  -----------O(1)
-	//	removeFirst   ------O(1)
-	//	removelast   -------O(n)
-	
-	
+
+	// Linked list can be used as Stack and Queue
+	// AddFirst ---------- O(1)
+	// addLast -----------O(1)
+	// removeFirst ------O(1)
+	// removelast -------O(n)
+
 //	Queue bnane ke liye 2 methods huye 
 
 //	AddFirst O(1)		|  addLast O(1)
 //	RemoveLast O(n) 	|  removeFirst O(1)
-	
+
 	// Here method 2 is better as it can do work in O(1) So we will use method 2
-	
-	
+
 //	
 ////	Stack bnane ke liye 2 methods huye 
 //
@@ -172,23 +170,72 @@ public class graphs {
 //	
 //	// Here method 1 is better as it can do work in O(1) So we will use method 1
 //	
-	
-	
-	
-	public boolean BFS(String src , String des) {
-		
-		LinkedList<Pair> queue= new LinkedList<>();
-		
-		Pair sp= new Pair();
-		sp.vname=src;
-		sp.psf=src;
-		
-		
-		
+
+	public boolean BFS(String src, String des) {
+		HashMap<String, Boolean> processed = new HashMap<>();
+		LinkedList<Pair> queue = new LinkedList<>();
+
+		// create a new Pair
+		Pair sp = new Pair();
+		sp.vname = src;
+		sp.psf = src;
+
+		// Put the new Pair in queue
+
+		queue.addLast(sp);
+
+		// while queue is not empty keep on doing the work
+		while (!queue.isEmpty()) {
+			// remove pair from queue
+			Pair rp = queue.removeFirst();
+			// check koi dubara toh nahi aara means jaise kisi mai cycle hai
+//			toh ek element hi do baar aa skta     
+
+//				 a
+//				/ \          jaise  ider a to d hai toh  abd  and acd
+//			   b   c         2 raste bane toh isliye check karna padega
+//			    \  /
+//			     d
+
+			if (processed.containsKey(rp.vname)) {
+				continue;
+			}
+
+			// Processed put
+			processed.put(rp.vname, true);
+
+			// direct edge check
+
+			if (containsEdge(rp.vname, des)) {
+				// print pathsofar
+				System.out.println("Path = " + rp.psf + des);
+
+				return true;
+			}
+
+			// nbrs
+			Vertex rpvtx = vtces.get(rp.vname);
+			ArrayList<String> keys = new ArrayList<>(rpvtx.nbrs.keySet());
+
+			// loop for keys
+			for (String i : keys) {
+
+				// process only unprocessed ones (nani toh infinite loop lag jani)
+				if (!processed.containsKey(i)) {
+					// make a new pair of neighbour
+					Pair np = new Pair();
+					np.vname = i;
+					np.psf = rp.psf + i;
+					// add in queue
+					queue.addLast(np);
+				}
+
+			}
+
+		}
+		return false;
+
 	}
-	
-	
-	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

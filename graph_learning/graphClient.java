@@ -44,10 +44,19 @@ public class graphClient {
 //		grp.display();
 //		
 
-		System.out.println(grp.hasPath("A", "G", new HashMap<>()));
-		grp.removeEdge("D", "E");
-		System.out.println(grp.hasPath("A", "G", new HashMap<>()));
+//		System.out.println(grp.hasPath("A", "G", new HashMap<>()));
+//		grp.removeEdge("D", "E");
+//		System.out.println(grp.hasPath("A", "G", new HashMap<>()));
 
+		System.out.println(grp.BFS("A", "F"));
+		grp.removeEdge("A", "D");
+		System.out.println(grp.BFS("A", "F"));
+		grp.removeEdge("D", "E");
+		System.out.println(grp.BFS("A", "F"));
+		
+		
+		
+		
 	}
 
 }
