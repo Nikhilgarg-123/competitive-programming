@@ -1,5 +1,5 @@
 package graph_learning;
-
+import java.util.*;
 public class graphClient {
 
 	public static void main(String[] args) {
@@ -24,24 +24,28 @@ public class graphClient {
 		
 		grp.display();
 		
-		System.out.println(grp.number_of_edges());
-		System.out.println(grp.number_of_vertex());
-		System.out.println(grp.containsEdge("A","C"));
-		System.out.println(grp.containsEdge("B","C"));
+//		System.out.println(grp.number_of_edges());
+//		System.out.println(grp.number_of_vertex());
+//		System.out.println(grp.containsEdge("A","C"));
+//		System.out.println(grp.containsEdge("B","C"));
+//		
+//		grp.removeEdge("A", "B");
+//		grp.display();
+//		
+//		grp.removeVertex("F");
+//		
+//		grp.display();
+//		
+//		grp.add_vertex("F");
+//		grp.display();
+//		grp.addEdge("A", "F", 10);
+//		grp.display();
+//		
 		
-		grp.removeEdge("A", "B");
-		grp.display();
+		System.out.println(grp.hasPath("A", "G", new HashMap<>()));
+		grp.removeEdge("D", "E");
+		System.out.println(grp.hasPath("A", "G", new HashMap<>()));
 		
-		grp.removeVertex("F");
-		
-		grp.display();
-		
-		grp.add_vertex("F");
-		grp.display();
-		grp.addEdge("A", "F", 10);
-		grp.display();
-		
-
 	}
 
 }

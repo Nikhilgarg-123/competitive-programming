@@ -106,6 +106,35 @@ public class graphs {
 		System.out.println("-------------------------");
 	}
 
+	public boolean hasPath(String vname1, String vname2,HashMap<String,Boolean> process) {
+		
+		process.put(vname1, true);
+		// direct edge
+
+		if (containsEdge(vname1, vname2)) {
+			return true;
+		}
+
+		// a ke neighbours dekho edge hai
+		// devote work to neighbours
+
+		Vertex vtx = vtces.get(vname1);
+
+		ArrayList<String> nbrs = new ArrayList<>(vtx.nbrs.keySet());
+
+		for (String i : nbrs) {
+
+			if (!process.containsKey(i) && hasPath(i, vname2 ,process)) {
+				return true;
+			}
+		}
+
+		return false;
+
+	}
+	
+	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
