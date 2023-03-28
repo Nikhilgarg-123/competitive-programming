@@ -36,6 +36,10 @@ public class graphClient {
 		
 		grp.display();
 		
+		grp.add_vertex("F");
+		grp.display();
+		grp.addEdge("A", "F", 10);
+		grp.display();
 		
 
 	}
