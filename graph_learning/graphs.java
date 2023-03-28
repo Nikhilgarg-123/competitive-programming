@@ -132,6 +132,63 @@ public class graphs {
 		return false;
 
 	}
+	
+	
+	// BFS (BREADTH FIRST SEARCH ) - similar to level order traversal of tree
+		
+	// DEFINATION  OF BFS
+	
+	// algorithm for searching in graph data Structure . It starts from 'SRC' 
+	// node and neighbour nodes at the present depth prior to moving on to the 
+	// nodes at next depth level.
+	
+//	BFS always give us shortest path
+	
+	private class Pair{
+		String vname;
+		String psf;
+	}
+	
+	// Linked list can be used as Stack and Queue 
+	//  AddFirst  ---------- O(1)
+	//	addLast  -----------O(1)
+	//	removeFirst   ------O(1)
+	//	removelast   -------O(n)
+	
+	
+//	Queue bnane ke liye 2 methods huye 
+
+//	AddFirst O(1)		|  addLast O(1)
+//	RemoveLast O(n) 	|  removeFirst O(1)
+	
+	// Here method 2 is better as it can do work in O(1) So we will use method 2
+	
+	
+//	
+////	Stack bnane ke liye 2 methods huye 
+//
+////	AddFirst O(1)		|  addLast O(1)
+////	RemoveFirst O(1) 	|  removeLast O(n)
+//	
+//	// Here method 1 is better as it can do work in O(1) So we will use method 1
+//	
+	
+	
+	
+	public boolean BFS(String src , String des) {
+		
+		LinkedList<Pair> queue= new LinkedList<>();
+		
+		Pair sp= new Pair();
+		sp.vname=src;
+		sp.psf=src;
+		
+		
+		
+	}
+	
+	
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
