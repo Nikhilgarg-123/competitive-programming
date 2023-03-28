@@ -106,8 +106,8 @@ public class graphs {
 		System.out.println("-------------------------");
 	}
 
-	public boolean hasPath(String vname1, String vname2,HashMap<String,Boolean> process) {
-		
+	public boolean hasPath(String vname1, String vname2, HashMap<String, Boolean> process) {
+
 		process.put(vname1, true);
 		// direct edge
 
@@ -124,7 +124,7 @@ public class graphs {
 
 		for (String i : nbrs) {
 
-			if (!process.containsKey(i) && hasPath(i, vname2 ,process)) {
+			if (!process.containsKey(i) && hasPath(i, vname2, process)) {
 				return true;
 			}
 		}
@@ -132,8 +132,6 @@ public class graphs {
 		return false;
 
 	}
-	
-	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

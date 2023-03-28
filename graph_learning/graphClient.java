@@ -1,10 +1,12 @@
 package graph_learning;
+
 import java.util.*;
+
 public class graphClient {
 
 	public static void main(String[] args) {
-		graphs grp=new graphs();
-		
+		graphs grp = new graphs();
+
 		grp.add_vertex("A");
 		grp.add_vertex("B");
 		grp.add_vertex("C");
@@ -12,7 +14,7 @@ public class graphClient {
 		grp.add_vertex("E");
 		grp.add_vertex("F");
 		grp.add_vertex("G");
-		
+
 		grp.addEdge("A", "B", 2);
 		grp.addEdge("A", "D", 12);
 		grp.addEdge("B", "C", 22);
@@ -21,9 +23,9 @@ public class graphClient {
 		grp.addEdge("E", "F", 42);
 		grp.addEdge("E", "G", 23);
 		grp.addEdge("F", "G", 29);
-		
+
 		grp.display();
-		
+
 //		System.out.println(grp.number_of_edges());
 //		System.out.println(grp.number_of_vertex());
 //		System.out.println(grp.containsEdge("A","C"));
@@ -41,11 +43,11 @@ public class graphClient {
 //		grp.addEdge("A", "F", 10);
 //		grp.display();
 //		
-		
+
 		System.out.println(grp.hasPath("A", "G", new HashMap<>()));
 		grp.removeEdge("D", "E");
 		System.out.println(grp.hasPath("A", "G", new HashMap<>()));
-		
+
 	}
 
 }
