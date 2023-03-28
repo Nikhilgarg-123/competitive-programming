@@ -191,7 +191,7 @@ public class graphs {
 			// check koi dubara toh nahi aara means jaise kisi mai cycle hai
 //			toh ek element hi do baar aa skta     
 
-//				 a
+//		    	 a
 //				/ \          jaise  ider a to d hai toh  abd  and acd
 //			   b   c         2 raste bane toh isliye check karna padega
 //			    \  /
