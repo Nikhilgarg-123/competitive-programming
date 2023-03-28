@@ -193,9 +193,9 @@ public class graphs {
 
 //				 a
 //				/ \          jaise  ider a to d hai toh  abd  and acd
-//			   b   c         2 raste bane toh isliye check karna padega
-//			    \  /
-//			     d
+//				   b   c         2 raste bane toh isliye check karna padega
+//				    \  /
+//				     d
 
 			if (processed.containsKey(rp.vname)) {
 				continue;
