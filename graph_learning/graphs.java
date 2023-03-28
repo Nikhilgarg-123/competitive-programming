@@ -29,6 +29,24 @@ public class graphs {
 		this.vtces.put(vname, vtx);
 	}
 
+	public void removeVertex(String vname) {
+		// like i want to remove a
+		// 1 . know neighbours of a
+		// 2 . go to neighours and remove a from them ;
+		// 3 . remove a from vtces hashmap
+
+		Vertex vtx = vtces.get(vname);
+		ArrayList<String> keys = new ArrayList<>(vtx.nbrs.keySet());
+		for (String i : keys) {
+			Vertex nbrvtx = vtces.get(i);
+			nbrvtx.nbrs.remove(vname);
+
+		}
+
+		vtces.remove(vname);
+
+	}
+
 	public int number_of_edges() {
 
 		ArrayList<String> keys = new ArrayList<>(vtces.keySet());
@@ -37,26 +55,55 @@ public class graphs {
 
 			size += vtces.get(i).nbrs.size();
 		}
-		return size/2;
+		return size / 2;
 
 	}
 
 	public boolean containsEdge(String vname1, String vname2) {
-		Vertex vtx1= vtces.get(vname1);
-		Vertex vtx2= vtces.get(vname2);
-		
-		if(vtx1==null || vtx2==null || !vtx1.nbrs.containsKey(vname2)) {
+		Vertex vtx1 = vtces.get(vname1);
+		Vertex vtx2 = vtces.get(vname2);
+
+		if (vtx1 == null || vtx2 == null || !vtx1.nbrs.containsKey(vname2)) {
 			return false;
 		}
 		return true;
 	}
 
 	public void addEdge(String vname1, String vname2, int cost) {
+		Vertex vtx1 = vtces.get(vname1);
+		Vertex vtx2 = vtces.get(vname2);
+
+		if (vtx1 == null || vtx2 == null || vtx1.nbrs.containsKey(vname2)) {
+			return;
+		}
+
+		vtx1.nbrs.put(vname2, cost);
+		vtx2.nbrs.put(vname1, cost);
 
 	}
 
 	public void removeEdge(String vname1, String vname2) {
+		Vertex vtx1 = vtces.get(vname1);
+		Vertex vtx2 = vtces.get(vname2);
 
+		if (vtx1 == null || vtx2 == null || !vtx1.nbrs.containsKey(vname2)) {
+			return;
+		}
+		vtx1.nbrs.remove(vname2);
+		vtx2.nbrs.remove(vname1);
+
+	}
+
+	public void display() {
+
+		System.out.println("-------------------------");
+
+		ArrayList<String> keys = new ArrayList<>(vtces.keySet());
+		for (String i : keys) {
+			Vertex vtx = vtces.get(i);
+			System.out.println(i + " : " + vtx.nbrs);
+		}
+		System.out.println("-------------------------");
 	}
 
 	public static void main(String[] args) {
