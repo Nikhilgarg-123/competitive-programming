@@ -164,7 +164,6 @@ public class graphs {
 
 //	
 
-
 	public boolean BFS(String src, String des) {
 		HashMap<String, Boolean> processed = new HashMap<>();
 		LinkedList<Pair> queue = new LinkedList<>();
@@ -234,17 +233,19 @@ public class graphs {
 	
 	
 	
-	// DFS 
-	 
-	// ider na ASCII  ki tarah chegleya chota fir bda  krke
+	
+	
+	// DFS
+
+	// ider na ASCII ki tarah chegleya chota fir bda krke
 //	and processing sabse bde ki hogyi
 //	
-	
+
 	// Depth First Search
-	//   Similar to pre/post/in order traversal of tree
-	
+	// Similar to pre/post/in order traversal of tree
+
 	// stack is used here
-	
+
 ////Stack bnane ke liye 2 methods huye 
 //
 ////AddFirst O(1)		|  addLast O(1)
@@ -252,10 +253,10 @@ public class graphs {
 //
 //// Here method 1 is better as it can do work in O(1) So we will use method 1
 //
-	
-	//   code similar hi hota hai as add last to add first kar denge 
+
+	// code similar hi hota hai as add last to add first kar denge
 	// queue sa naam bdl ke stack kar denge
-	
+
 	public boolean DFS(String src, String des) {
 		HashMap<String, Boolean> processed = new HashMap<>();
 		LinkedList<Pair> stack = new LinkedList<>();
@@ -323,6 +324,158 @@ public class graphs {
 	}
 
 	
+	
+	
+	
+	// BFT (Breadth First Traversal)
+
+	// here we cover each and every node of a graph
+
+	public void BFT() {
+		HashMap<String, Boolean> processed = new HashMap<>();
+		LinkedList<Pair> queue = new LinkedList<>();
+
+		ArrayList<String> keys = new ArrayList<>(vtces.keySet());
+
+		for (String key : keys) {
+
+			// kyuki agar graph disconnected huya then sare transverse nhi ho payengye
+			if (processed.containsKey(key)) {
+				continue;
+			}
+
+			// create a new Pair
+			Pair sp = new Pair();
+			sp.vname = key;
+			sp.psf = key;
+
+			// Put the new Pair in queue
+
+			queue.addLast(sp);
+
+			// while queue is not empty keep on doing the work
+			while (!queue.isEmpty()) {
+				// remove pair from queue
+				Pair rp = queue.removeFirst();
+				// check koi dubara toh nahi aara means jaise kisi mai cycle hai
+//			toh ek element hi do baar aa skta     
+
+//				 a
+//				/ \          jaise  ider a to d hai toh  abd  and acd
+//			   b   c         2 raste bane toh isliye check karna padega
+//			    \  /
+//			     d
+
+				if (processed.containsKey(rp.vname)) {
+					continue;
+				}
+
+				// Processed put
+				processed.put(rp.vname, true);
+
+				// direct edge
+				System.out.println(rp.vname + " " + rp.psf);
+
+				// nbrs
+				Vertex rpvtx = vtces.get(rp.vname);
+				ArrayList<String> nbrset = new ArrayList<>(rpvtx.nbrs.keySet());
+
+				// loop for keys
+				for (String i : nbrset) {
+
+					// process only unprocessed ones (nani toh infinite loop lag jani)
+					if (!processed.containsKey(i)) {
+						// make a new pair of neighbour
+						Pair np = new Pair();
+						np.vname = i;
+						np.psf = rp.psf + i;
+						// add in queue
+						queue.addLast(np);
+					}
+
+				}
+
+			}
+		}
+
+	}
+
+	
+	
+//	DFT (depth First Traversal)
+	// stack ds
+	
+	public void DFT() {
+		HashMap<String, Boolean> processed = new HashMap<>();
+		LinkedList<Pair> stack = new LinkedList<>();
+
+		ArrayList<String> keys = new ArrayList<>(vtces.keySet());
+
+		for (String key : keys) {
+
+			// kyuki agar graph disconnected huya then sare transverse nhi ho payengye
+			if (processed.containsKey(key)) {
+				continue;
+			}
+
+			// create a new Pair
+			Pair sp = new Pair();
+			sp.vname = key;
+			sp.psf = key;
+
+			// Put the new Pair in queue
+
+			stack.addFirst(sp);
+
+			// while queue is not empty keep on doing the work
+			while (!stack.isEmpty()) {
+				// remove pair from queue
+				Pair rp = stack.removeFirst();
+				// check koi dubara toh nahi aara means jaise kisi mai cycle hai
+//			toh ek element hi do baar aa skta     
+
+//				 a
+//				/ \          jaise  ider a to d hai toh  abd  and acd
+//			   b   c         2 raste bane toh isliye check karna padega
+//			    \  /
+//			     d
+
+				if (processed.containsKey(rp.vname)) {
+					continue;
+				}
+
+				// Processed put
+				processed.put(rp.vname, true);
+
+				// direct edge
+				System.out.println(rp.vname + " " + rp.psf);
+
+				// nbrs
+				Vertex rpvtx = vtces.get(rp.vname);
+				ArrayList<String> nbrset = new ArrayList<>(rpvtx.nbrs.keySet());
+
+				// loop for keys
+				for (String i : nbrset) {
+
+					// process only unprocessed ones (nani toh infinite loop lag jani)
+					if (!processed.containsKey(i)) {
+						// make a new pair of neighbour
+						Pair np = new Pair();
+						np.vname = i;
+						np.psf = rp.psf + i;
+						// add in queue
+						stack.addFirst(np);
+					}
+
+				}
+
+			}
+		}
+
+	}
+	
+	
+
 	
 	
 	
