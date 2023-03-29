@@ -230,11 +230,6 @@ public class graphs {
 
 	}
 
-	
-	
-	
-	
-	
 	// DFS
 
 	// ider na ASCII ki tarah chegleya chota fir bda krke
@@ -323,10 +318,6 @@ public class graphs {
 
 	}
 
-	
-	
-	
-	
 	// BFT (Breadth First Traversal)
 
 	// here we cover each and every node of a graph
@@ -400,11 +391,9 @@ public class graphs {
 
 	}
 
-	
-	
 //	DFT (depth First Traversal)
 	// stack ds
-	
+
 	public void DFT() {
 		HashMap<String, Boolean> processed = new HashMap<>();
 		LinkedList<Pair> stack = new LinkedList<>();
@@ -473,12 +462,160 @@ public class graphs {
 		}
 
 	}
+
+	public boolean isCyclic() {
+		HashMap<String, Boolean> processed = new HashMap<>();
+		LinkedList<Pair> queue = new LinkedList<>();
+
+		ArrayList<String> keys = new ArrayList<>(vtces.keySet());
+
+		for (String key : keys) {
+
+			// kyuki agar graph disconnected huya then sare transverse nhi ho payengye
+			if (processed.containsKey(key)) {
+				continue;
+			}
+
+			// create a new Pair
+			Pair sp = new Pair();
+			sp.vname = key;
+			sp.psf = key;
+
+			// Put the new Pair in queue
+
+			queue.addLast(sp);
+
+			// while queue is not empty keep on doing the work
+			while (!queue.isEmpty()) {
+				// remove pair from queue
+				Pair rp = queue.removeFirst();
+				// check koi dubara toh nahi aara means jaise kisi mai cycle hai
+//			toh ek element hi do baar aa skta     
+
+//				 a
+//				/ \          jaise  ider a to d hai toh  abd  and acd
+//			   b   c         2 raste bane toh isliye check karna padega
+//			    \  /
+//			     d
+
+				if (processed.containsKey(rp.vname)) {
+					return true;
+				}
+
+				// Processed put
+				processed.put(rp.vname, true);
+
+				// nbrs
+				Vertex rpvtx = vtces.get(rp.vname);
+				ArrayList<String> nbrset = new ArrayList<>(rpvtx.nbrs.keySet());
+
+				// loop for keys
+				for (String i : nbrset) {
+
+					// process only unprocessed ones (nani toh infinite loop lag jani)
+					if (!processed.containsKey(i)) {
+						// make a new pair of neighbour
+						Pair np = new Pair();
+						np.vname = i;
+						np.psf = rp.psf + i;
+						// add in queue
+						queue.addLast(np);
+					}
+
+				}
+
+			}
+		}
+		return false;
+	}
+
+	// is connected
+
+	public boolean isConnected() {
+		int flag = 0;
+		HashMap<String, Boolean> processed = new HashMap<>();
+		LinkedList<Pair> queue = new LinkedList<>();
+
+		ArrayList<String> keys = new ArrayList<>(vtces.keySet());
+
+		for (String key : keys) {
+
+			// kyuki agar graph disconnected huya then sare transverse nhi ho payengye
+			if (processed.containsKey(key)) {
+				continue;
+			}
+
+			flag++;
+
+			// create a new Pair
+			Pair sp = new Pair();
+			sp.vname = key;
+			sp.psf = key;
+
+			// Put the new Pair in queue
+
+			queue.addLast(sp);
+
+			// while queue is not empty keep on doing the work
+			while (!queue.isEmpty()) {
+				// remove pair from queue
+				Pair rp = queue.removeFirst();
+				// check koi dubara toh nahi aara means jaise kisi mai cycle hai
+//			toh ek element hi do baar aa skta     
+
+//				 a
+//				/ \          jaise  ider a to d hai toh  abd  and acd
+//			   b   c         2 raste bane toh isliye check karna padega
+//			    \  /
+//			     d
+
+				if (processed.containsKey(rp.vname)) {
+					continue;
+				}
+
+				// Processed put
+				processed.put(rp.vname, true);
+
+				// nbrs
+				Vertex rpvtx = vtces.get(rp.vname);
+				ArrayList<String> nbrset = new ArrayList<>(rpvtx.nbrs.keySet());
+
+				// loop for keys
+				for (String i : nbrset) {
+
+					// process only unprocessed ones (nani toh infinite loop lag jani)
+					if (!processed.containsKey(i)) {
+						// make a new pair of neighbour
+						Pair np = new Pair();
+						np.vname = i;
+						np.psf = rp.psf + i;
+						// add in queue
+						queue.addLast(np);
+					}
+
+				}
+
+			}
+		}
+
+		if (flag >= 2) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+
+	// is tree
+	// not cyclic + connected
+	// if there are n nodes then n-1 edges
+
+	public boolean isTree() {
+		return !isCyclic() && isConnected();
+	}
 	
 	
 
-	
-	
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

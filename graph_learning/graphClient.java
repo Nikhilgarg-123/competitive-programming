@@ -96,7 +96,23 @@ public class graphClient {
 //		grp.removeEdge("D", "E");
 //		grp.BFT();
 		
-		grp.DFT();
+//		grp.DFT();
+		
+		
+//		System.out.println(grp.isCyclic());
+//		grp.removeEdge("A", "B");
+//		grp.removeEdge("E", "F");
+//		System.out.println(grp.isCyclic());
+		
+//		System.out.println(grp.isConnected());
+//		grp.removeEdge("D", "E");
+//		System.out.println(grp.isConnected());
+		
+		System.out.println(grp.isTree());
+		grp.removeEdge("A", "B");
+		grp.removeEdge("E", "F");
+		System.out.println(grp.isTree());
+
 		
 	}
 
