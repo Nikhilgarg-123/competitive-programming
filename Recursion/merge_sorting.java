@@ -54,7 +54,6 @@ public class merge_sorting {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		int arr[]= {10,8,7,50,2,60,9,4,3};
 	
