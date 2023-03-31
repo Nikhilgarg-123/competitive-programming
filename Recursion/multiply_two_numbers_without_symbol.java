@@ -24,8 +24,11 @@ public class multiply_two_numbers_without_symbol {
 //		 or With bufferedWriter with fast output
 		String str = String.valueOf(c);
 		bw.write(str);
+		bw.newLine();
 		bw.flush();
 
+		System.out.println(Integer.toString(10,2));
+		
 	}
 
 }
