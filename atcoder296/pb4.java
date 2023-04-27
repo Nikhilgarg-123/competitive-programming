@@ -14,15 +14,15 @@ public class pb4 {
 		long s=1;
 		long e=n;
 		long ans=-1;
-		for(int i=1;i<=n;i++) {
-			long mul=s*e;
-			if(mul>=x) {
-				ans=mul;
+		while(s<e) {
+			long res= s*e;
+			if(res>=x) {
+				ans=res;
 				e--;
-			}else {
+			}
+			else {
 				s++;
 			}
-			
 		}
 		System.out.println(ans);
 
