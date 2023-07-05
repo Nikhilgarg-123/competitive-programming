@@ -16,11 +16,11 @@ public class problem3 {
 			if (temp == 1) {
 				int temp2 = sc.nextInt();
 				int temp3 = sc.nextInt();
-				if(box.containsKey(temp3)==false) {
+				if (box.containsKey(temp3) == false) {
 					box.put(temp3, new ArrayList<>());
 
 				}
-				if(card.containsKey(temp2)==false) {
+				if (card.containsKey(temp2) == false) {
 					card.put(temp2, new ArrayList<>());
 
 				}
@@ -28,7 +28,7 @@ public class problem3 {
 				arr.add(temp2);
 				box.put(temp3, arr);
 				ArrayList<Integer> arr2 = card.get(temp2);
-				if(arr2.contains(temp3)==false) {
+				if (arr2.contains(temp3) == false) {
 					arr2.add(temp3);
 
 				}
@@ -38,25 +38,21 @@ public class problem3 {
 				int temp2 = sc.nextInt();
 				ArrayList<Integer> arr = box.get(temp2);
 				Collections.sort(arr);
-				
-				for(int i:arr) {
-					System.out.print(i+" ");
+
+				for (int i : arr) {
+					System.out.print(i + " ");
 				}
 
-				
 				System.out.println();
-				
-				
 
 			} else {
 				int temp2 = sc.nextInt();
 				ArrayList<Integer> arr = card.get(temp2);
 				Collections.sort(arr);
-				for(int i:arr) {
-					System.out.print(i+" ");
+				for (int i : arr) {
+					System.out.print(i + " ");
 				}
 
-				
 				System.out.println();
 
 			}
